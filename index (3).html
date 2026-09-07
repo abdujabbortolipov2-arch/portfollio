@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>VELLORA — Premium Furniture</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+ --bg:#08090b;--card:#111317;--card2:#17191e;--gold:#d9b36c;
+ --text:#f5f5f5;--muted:#9b9da5;--line:#272a31;--green:#54d18a;
+}
+body{
+ font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);
+ overflow-x:hidden;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+
+.header{
+ position:sticky;top:0;z-index:1000;background:rgba(8,9,11,.88);
+ backdrop-filter:blur(18px);border-bottom:1px solid var(--line);
+}
+.nav{
+ max-width:1400px;margin:auto;height:76px;padding:0 24px;
+ display:flex;align-items:center;gap:25px;
+}
+.logo{font-size:27px;font-weight:900;letter-spacing:6px;color:#fff}
+.logo span{color:var(--gold)}
+.navlinks{display:flex;gap:8px;margin-left:auto}
+.navlinks button,.navbtn{
+ background:none;border:0;color:#ddd;padding:11px 13px;border-radius:10px;
+}
+.navlinks button:hover,.navbtn:hover{background:#1b1d22;color:#fff}
+.icons{display:flex;gap:8px}
+.iconbtn{
+ width:42px;height:42px;border:1px solid var(--line);background:#111318;
+ color:white;border-radius:12px;
+}
+.badge{
+ position:relative;display:inline-flex;align-items:center;justify-content:center;
+}
+.badge b{
+ position:absolute;right:-4px;top:-4px;background:#d9b36c;color:#000;
+ min-width:18px;height:18px;border-radius:20px;font-size:10px;
+ display:flex;align-items:center;justify-content:center;
+}
+.hero{
+ min-height:650px;position:relative;overflow:hidden;
+ background:
+ linear-gradient(90deg,rgba(5,6,8,.97),rgba(5,6,8,.62),rgba(5,6,8,.2)),
+ url("https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1800&q=90") center/cover;
+}
+.heroInner{max-width:1400px;margin:auto;padding:130px 24px}
+.eyebrow{color:var(--gold);letter-spacing:4px;font-size:12px;font-weight:bold}
+.hero h1{
+ font-size:clamp(50px,7vw,100px);line-height:.94;max-width:850px;
+ margin:20px 0;
+}
+.hero h1 span{color:var(--gold)}
+.hero p{max-width:610px;color:#c7c8cc;font-size:18px;line-height:1.7}
+.actions{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+.btn{
+ border:1px solid var(--line);background:#17191d;color:#fff;padding:14px 20px;
+ border-radius:12px;font-weight:bold;
+}
+.btn.primary{background:var(--gold);border-color:var(--gold);color:#090909}
+.btn:hover{transform:translateY(-1px)}
+.section{max-width:1400px;margin:auto;padding:80px 24px}
+.sectionHead{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:28px}
+.sectionHead h2{font-size:38px}
+.sectionHead p{color:var(--muted);max-width:650px;line-height:1.6}
+
+.styles{
+ display:grid;grid-template-columns:repeat(7,1fr);gap:12px;
+}
+.style{
+ min-height:170px;border:1px solid var(--line);border-radius:18px;padding:20px;
+ display:flex;flex-direction:column;justify-content:flex-end;
+ background-size:cover;background-position:center;overflow:hidden;position:relative;
+}
+.style:before{content:"";position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,.9))}
+.style>*{position:relative}
+.style strong{font-size:17px}.style small{color:#bbb;margin-top:5px}
+
+.aiSection{
+ border:1px solid #34312a;background:
+ radial-gradient(circle at 90% 10%,rgba(217,179,108,.16),transparent 35%),#0d0f13;
+ border-radius:28px;padding:40px;display:grid;grid-template-columns:1fr 1.2fr;gap:30px;
+}
+.aiTitle{font-size:45px;margin:15px 0}
+.aiTitle span{color:var(--gold)}
+.aiDesc{color:#aaa;line-height:1.7}
+.aiOrb{
+ width:120px;height:120px;border-radius:50%;
+ background:radial-gradient(circle,#fff 0,#d9b36c 15%,#9b6b2e 35%,transparent 70%);
+ box-shadow:0 0 80px rgba(217,179,108,.35);
+ animation:pulse 2.5s infinite;
+}
+@keyframes pulse{50%{transform:scale(1.08);filter:brightness(1.2)}}
+
+.chat{
+ background:#08090b;border:1px solid var(--line);border-radius:20px;
+ height:470px;display:flex;flex-direction:column;overflow:hidden;
+}
+.chatTop{padding:16px;border-bottom:1px solid var(--line);font-weight:bold}
+.chatMessages{padding:18px;overflow:auto;flex:1}
+.msg{
+ max-width:85%;padding:12px 15px;border-radius:14px;margin-bottom:10px;
+ line-height:1.5;font-size:14px;
+}
+.msg.ai{background:#17191e;color:#ddd}
+.msg.user{background:var(--gold);color:#111;margin-left:auto}
+.chatInput{display:flex;padding:12px;border-top:1px solid var(--line);gap:8px}
+.chatInput input{
+ flex:1;background:#14161a;border:1px solid var(--line);color:#fff;
+ border-radius:12px;padding:13px;outline:none;
+}
+.send{width:48px;border:0;background:var(--gold);border-radius:12px}
+
+.toolbar{
+ display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px;
+}
+.search{
+ flex:1;min-width:220px;background:#111318;border:1px solid var(--line);
+ color:#fff;padding:14px;border-radius:12px;outline:none;
+}
+.filter{
+ background:#111318;color:#ddd;border:1px solid var(--line);
+ padding:14px;border-radius:12px;
+}
+.products{
+ display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+}
+.product{
+ background:var(--card);border:1px solid var(--line);border-radius:18px;
+ overflow:hidden;transition:.25s;position:relative;
+}
+.product:hover{transform:translateY(-5px);border-color:#484b53}
+.productImg{height:270px;position:relative;overflow:hidden;background:#18191d}
+.productImg img{width:100%;height:100%;object-fit:cover;transition:.35s}
+.product:hover .productImg img{transform:scale(1.05)}
+.heart{
+ position:absolute;right:12px;top:12px;width:38px;height:38px;border-radius:50%;
+ border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.55);color:white;
+}
+.heart.active{color:#ff667d}
+.discount{
+ position:absolute;left:12px;top:12px;background:#d9b36c;color:#000;
+ padding:6px 9px;border-radius:8px;font-size:11px;font-weight:bold;
+}
+.productBody{padding:17px}
+.productBody small{color:var(--gold)}
+.productBody h3{margin:7px 0;font-size:18px}
+.rating{color:#e7bd63;font-size:13px;margin-bottom:10px}
+.price{font-size:20px;font-weight:bold}
+.old{color:#777;text-decoration:line-through;font-size:13px;margin-left:6px}
+.productFoot{display:flex;gap:8px;margin-top:15px}
+.productFoot button{flex:1}
+
+.infoGrid{
+ display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+}
+.infoCard{padding:25px;border:1px solid var(--line);background:#111318;border-radius:18px}
+.infoCard b{font-size:18px}.infoCard p{color:#999;line-height:1.6;margin-top:8px}
+
+.footer{
+ border-top:1px solid var(--line);padding:40px 24px;color:#888;text-align:center;
+}
+
+/* modal */
+.overlay{
+ position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+ z-index:2000;display:none;align-items:center;justify-content:center;padding:18px;
+}
+.overlay.show{display:flex}
+.modal{
+ width:min(1000px,100%);max-height:92vh;overflow:auto;background:#101216;
+ border:1px solid var(--line);border-radius:24px;padding:25px;position:relative;
+}
+.close{
+ position:absolute;right:18px;top:18px;width:40px;height:40px;border-radius:10px;
+ border:1px solid var(--line);background:#17191e;color:#fff;
+}
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:30px;padding-top:15px}
+.detailImg{height:500px;border-radius:18px;overflow:hidden;background:#18191d}
+.detailImg img{width:100%;height:100%;object-fit:cover}
+.detail h2{font-size:35px;margin:10px 0}
+.detail p{color:#aaa;line-height:1.7}
+.option{margin-top:20px}
+.option label{display:block;color:#999;font-size:13px;margin-bottom:8px}
+.options{display:flex;gap:8px;flex-wrap:wrap}
+.options button{
+ padding:10px 14px;background:#17191e;border:1px solid var(--line);
+ color:#ddd;border-radius:9px;
+}
+.options button.active{border-color:var(--gold);color:var(--gold)}
+.qty{display:flex;align-items:center;gap:10px}
+.qty button{width:35px;height:35px;border-radius:8px;background:#17191e;color:#fff;border:1px solid var(--line)}
+.qty span{min-width:25px;text-align:center}
+
+.cartItem{
+ display:grid;grid-template-columns:80px 1fr auto;gap:14px;
+ padding:13px 0;border-bottom:1px solid var(--line);align-items:center;
+}
+.cartItem img{width:80px;height:70px;border-radius:10px;object-fit:cover}
+.cartItem small{color:#999}
+.total{
+ display:flex;justify-content:space-between;font-size:22px;font-weight:bold;
+ margin-top:20px;padding-top:20px;border-top:1px solid var(--line);
+}
+.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:7px;margin-bottom:13px}
+.field.full{grid-column:1/-1}
+.field label{font-size:13px;color:#999}
+.field input,.field select,.field textarea{
+ background:#15171b;border:1px solid var(--line);color:#fff;
+ padding:13px;border-radius:10px;outline:none;
+}
+.field textarea{min-height:90px;resize:vertical}
+
+.timeline{display:flex;flex-direction:column;gap:0;margin:25px 0}
+.step{display:flex;gap:15px;position:relative;padding-bottom:28px}
+.step:not(:last-child):before{
+ content:"";position:absolute;left:14px;top:30px;width:2px;height:calc(100% - 10px);
+ background:#30333a;
+}
+.dot{
+ width:30px;height:30px;border-radius:50%;background:#24272d;
+ border:2px solid #41444b;z-index:1;flex:none;
+}
+.step.done .dot{background:var(--gold);border-color:var(--gold)}
+.step h4{margin-bottom:5px}.step p{color:#777;font-size:13px}
+.step.done p{color:#aaa}
+
+.adminStats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:25px}
+.stat{background:#17191e;border:1px solid var(--line);padding:20px;border-radius:15px}
+.stat b{font-size:28px}.stat span{display:block;color:#888;margin-top:5px}
+.tableWrap{overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:750px}
+th,td{text-align:left;padding:13px;border-bottom:1px solid var(--line);font-size:13px}
+th{color:var(--gold)}
+.statusSelect{background:#17191e;color:white;border:1px solid var(--line);padding:8px;border-radius:8px}
+
+.locationBox{
+ background:#15171b;border:1px solid var(--line);padding:15px;border-radius:12px;
+ color:#aaa;margin:10px 0;
+}
+.toast{
+ position:fixed;right:20px;bottom:20px;z-index:5000;
+ background:#fff;color:#111;padding:14px 18px;border-radius:12px;
+ box-shadow:0 15px 50px #000;transform:translateY(150px);transition:.3s;
+}
+.toast.show{transform:translateY(0)}
+
+.fabAI{
+ position:fixed;right:22px;bottom:22px;width:62px;height:62px;border-radius:50%;
+ border:1px solid #e5c37e;background:var(--gold);color:#111;z-index:1500;
+ font-size:23px;box-shadow:0 10px 40px rgba(217,179,108,.3);
+}
+.empty{text-align:center;color:#888;padding:40px}
+
+@media(max-width:1100px){
+ .styles{grid-template-columns:repeat(4,1fr)}
+ .products{grid-template-columns:repeat(3,1fr)}
+ .aiSection{grid-template-columns:1fr}
+ .infoGrid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:760px){
+ .nav{height:65px;padding:0 13px}.logo{font-size:21px}
+ .navlinks{display:none}
+ .hero{min-height:580px}.heroInner{padding:90px 20px}
+ .hero h1{font-size:52px}
+ .section{padding:55px 15px}.sectionHead{display:block}.sectionHead h2{font-size:30px;margin-bottom:8px}
+ .styles{grid-template-columns:repeat(2,1fr)}
+ .products{grid-template-columns:repeat(2,1fr);gap:10px}
+ .productImg{height:200px}.productBody{padding:12px}.productBody h3{font-size:15px}
+ .aiSection{padding:22px}.aiTitle{font-size:35px}
+ .detail{grid-template-columns:1fr}.detailImg{height:300px}
+ .formGrid{grid-template-columns:1fr}.field.full{grid-column:auto}
+ .infoGrid,.adminStats{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+ .products{grid-template-columns:1fr}
+ .productImg{height:250px}
+ .styles{grid-template-columns:1fr 1fr}
+ .infoGrid,.adminStats{grid-template-columns:1fr}
+ .icons{margin-left:auto}
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+<nav class="nav">
+ <div class="logo">VEL<span>L</span>ORA</div>
+
+ <div class="navlinks">
+  <button onclick="scrollToId('products')">Katalog</button>
+  <button onclick="scrollToId('styles')">Uslublar</button>
+  <button onclick="openAI()">AI</button>
+  <button onclick="openAccount()">Hisob</button>
+ </div>
+
+ <div class="icons">
+  <button class="iconbtn" onclick="openFavorites()">♡</button>
+  <button class="iconbtn badge" onclick="openCart()">🛒<b id="cartCount">0</b></button>
+  <button class="iconbtn" onclick="openAccount()">👤</button>
+ </div>
+</nav>
+</header>
+
+<section class="hero">
+ <div class="heroInner">
+  <div class="eyebrow">VELLORA PREMIUM COLLECTION</div>
+  <h1>Uyingizga <span>yangi</span> daraja.</h1>
+  <p>
+   High-Tech, Glass, Stone, Luxury, Minimal va Classic uslubdagi
+   zamonaviy mebellar. Dizaynni tanlang, rang va o‘lchamni belgilang —
+   qolganini VELLORA hal qiladi.
+  </p>
+  <div class="actions">
+   <button class="btn primary" onclick="scrollToId('products')">Katalogni ko‘rish</button>
+   <button class="btn" onclick="openAI()">✦ VELLORA AI</button>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="styles">
+ <div class="sectionHead">
+  <div>
+   <div class="eyebrow">DESIGN LANGUAGE</div>
+   <h2>Uslubingizni tanlang</h2>
+  </div>
+  <p>Har bir interyer uchun alohida atmosfera: sovuq High-Tech yoki iliq Classic — tanlov sizniki.</p>
+ </div>
+
+ <div class="styles" id="styleGrid"></div>
+</section>
+
+<section class="section">
+ <div class="aiSection">
+  <div>
+   <div class="aiOrb"></div>
+   <div class="eyebrow" style="margin-top:25px">VELLORA AI DESIGNER</div>
+   <div class="aiTitle">Savolingizni <span>yozing.</span></div>
+   <p class="aiDesc">
+    “18 m² xona uchun qanday divan olsam bo‘ladi?”,
+    “High-Tech uslubida stol kerak”, “10 mln so‘mga xona jihozlash mumkinmi?”
+    yoki oddiy boshqa savol — AI yordamchi javob beradi.
+   </p>
+   <button class="btn primary" style="margin-top:22px" onclick="openAI()">AI bilan gaplashish →</button>
+  </div>
+
+  <div class="chat">
+   <div class="chatTop">✦ VELLORA AI <span style="float:right;color:#54d18a">● Online</span></div>
+   <div class="chatMessages" id="miniChat">
+    <div class="msg ai">Salom! Men VELLORA AI. Mebel, narx, uslub, rang, o‘lcham va yetkazib berish haqida savol bering.</div>
+   </div>
+   <div class="chatInput">
+    <input id="miniInput" placeholder="Savolingizni yozing..." onkeydown="if(event.key==='Enter')miniSend()">
+    <button class="send" onclick="miniSend()">➤</button>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="products">
+ <div class="sectionHead">
+  <div>
+   <div class="eyebrow">48+ MODELLAR</div>
+   <h2>VELLORA Collection</h2>
+  </div>
+  <p>Rang, material, o‘lcham va uslub bo‘yicha o‘zingizga mos variantni toping.</p>
+ </div>
+
+ <div class="toolbar">
+  <input class="search" id="search" placeholder="🔎 Mebel qidirish..." oninput="renderProducts()">
+
+  <select class="filter" id="catFilter" onchange="renderProducts()">
+   <option value="">Barcha kategoriyalar</option>
+   <option>Divan</option><option>Kreslo</option><option>Stol</option>
+   <option>Shkaf</option><option>Krovat</option><option>TV Zona</option>
+   <option>Oyna</option><option>Komod</option><option>Stul</option>
+  </select>
+
+  <select class="filter" id="styleFilter" onchange="renderProducts()">
+   <option value="">Barcha uslublar</option>
+   <option>High-Tech</option><option>Stone</option><option>Glass</option>
+   <option>Minimal</option><option>Luxury</option><option>Classic</option>
+   <option>Modern</option>
+  </select>
+
+  <select class="filter" id="priceFilter" onchange="renderProducts()">
+   <option value="">Narx</option>
+   <option value="5">5 mln gacha</option>
+   <option value="10">10 mln gacha</option>
+   <option value="20">20 mln gacha</option>
+  </select>
+ </div>
+
+ <div class="products" id="productsGrid"></div>
+</section>
+
+<section class="section">
+ <div class="infoGrid">
+  <div class="infoCard"><b>📍 GPS Yetkazib berish</b><p>Joylashuvingizni aniqlab, taxminiy yetkazib berish narxini hisoblaymiz.</p></div>
+  <div class="infoCard"><b>🚚 Tezkor Delivery</b><p>Buyurtma holatini real vaqtga yaqin tarzda bosqichma-bosqich kuzating.</p></div>
+  <div class="infoCard"><b>💳 To‘lov</b><p>Karta yoki naqd to‘lov variantini tanlang.</p></div>
+  <div class="infoCard"><b>🔐 VELLORA Account</b><p>Buyurtmalaringiz va tarixingiz local qurilmada saqlanadi.</p></div>
+ </div>
+</section>
+
+<footer class="footer">
+ © 2026 VELLORA — Premium Furniture. All rights reserved.
+</footer>
+
+<button class="fabAI" onclick="openAI()">✦</button>
+
+<div class="toast" id="toast"></div>
+
+<!-- PRODUCT MODAL -->
+<div class="overlay" id="productModal">
+ <div class="modal">
+  <button class="close" onclick="closeModal('productModal')">×</button>
+  <div id="productDetail"></div>
+ </div>
+</div>
+
+<!-- CART -->
+<div class="overlay" id="cartModal">
+ <div class="modal" style="max-width:700px">
+  <button class="close" onclick="closeModal('cartModal')">×</button>
+  <h2>🛒 Savat</h2>
+  <div id="cartList" style="margin-top:20px"></div>
+  <div class="total"><span>Jami</span><span id="cartTotal">0 so‘m</span></div>
+  <button class="btn primary" style="width:100%;margin-top:20px" onclick="openCheckout()">Buyurtma berish</button>
+ </div>
+</div>
+
+<!-- CHECKOUT -->
+<div class="overlay" id="checkoutModal">
+ <div class="modal" style="max-width:850px">
+  <button class="close" onclick="closeModal('checkoutModal')">×</button>
+  <h2>Buyurtmani rasmiylashtirish</h2>
+
+  <div class="formGrid" style="margin-top:25px">
+   <div class="field">
+    <label>Ism</label>
+    <input id="checkoutName" placeholder="Ismingiz">
+   </div>
+
+   <div class="field">
+    <label>Telefon</label>
+    <input id="checkoutPhone" placeholder="+998 90 123 45 67">
+   </div>
+
+   <div class="field full">
+    <label>Manzil</label>
+    <textarea id="checkoutAddress" placeholder="Yetkazib berish manzili"></textarea>
+   </div>
+
+   <div class="field full">
+    <label>Joylashuv</label>
+    <button class="btn" onclick="getGPS()">📍 GPS orqali joylashuvni aniqlash</button>
+    <div class="locationBox" id="locationInfo">Joylashuv aniqlanmagan.</div>
+   </div>
+
+   <div class="field">
+    <label>To‘lov</label>
+    <select id="payment">
+     <option value="cash">Naqd</option>
+     <option value="card">Karta</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label>Yetkazib berish</label>
+    <select id="delivery">
+     <option value="standard">Standart — 2-5 kun</option>
+     <option value="fast">Tezkor — 1-2 kun</option>
+    </select>
+   </div>
+  </div>
+
+  <button class="btn primary" style="width:100%;margin-top:20px" onclick="placeOrder()">
+   Buyurtmani tasdiqlash
+  </button>
+ </div>
+</div>
+
+<!-- AI -->
+<div class="overlay" id="aiModal">
+ <div class="modal" style="max-width:800px;padding:0;overflow:hidden">
+  <button class="close" onclick="closeModal('aiModal')" style="z-index:3">×</button>
+  <div class="chat" style="height:700px;border:0;border-radius:0">
+   <div class="chatTop">
+    ✦ VELLORA AI DESIGNER
+    <span style="float:right;color:#54d18a">● Online</span>
+   </div>
+   <div class="chatMessages" id="aiMessages">
+    <div class="msg ai">
+     Salom! Men VELLORA AI. Menga xohlagan savolingizni yozing.
+     Masalan: “12 mln budjetga High-Tech xona uchun nima olaman?”
+    </div>
+   </div>
+   <div class="chatInput">
+    <input id="aiInput" placeholder="Istalgan savolingizni yozing..." onkeydown="if(event.key==='Enter')aiSend()">
+    <button class="send" onclick="aiSend()">➤</button>
+   </div>
+  </div>
+ </div>
+</div>
+
+<!-- ACCOUNT -->
+<div class="overlay" id="accountModal">
+ <div class="modal" style="max-width:700px">
+  <button class="close" onclick="closeModal('accountModal')">×</button>
+  <div id="accountContent"></div>
+ </div>
+</div>
+
+<!-- FAVORITES -->
+<div class="overlay" id="favModal">
+ <div class="modal">
+  <button class="close" onclick="closeModal('favModal')">×</button>
+  <h2>♡ Sevimlilar</h2>
+  <div class="products" id="favGrid" style="margin-top:20px"></div>
+ </div>
+</div>
+
+<!-- ADMIN -->
+<div class="overlay" id="adminModal">
+ <div class="modal" style="max-width:1200px">
+  <button class="close" onclick="closeModal('adminModal')">×</button>
+  <div id="adminContent"></div>
+ </div>
+</div>
+
+<script>
+/* =========================
+   VELLORA DATABASE
+========================= */
+
+const IMG=[
+ "photo-1555041469-a586c61ea9bc",
+ "photo-1550226891-ef816aed4a98",
+ "photo-1618221195710-dd6b41faaea6",
+ "photo-1616486338812-3dadae4b4ace",
+ "photo-1600210492486-724fe5c67fb0",
+ "photo-1615529162924-f8605388461d",
+ "photo-1600607687920-4e2a09cf159d",
+ "photo-1600566753190-17f0baa2a6c3",
+ "photo-1618220179428-22790b461013",
+ "photo-1600585154340-be6161a56a0c",
+ "photo-1616137466211-f939a420be84",
+ "photo-1600121848594-d8644e57abab"
+];
+
+function img(i,w=900){
+ return `https://images.unsplash.com/${IMG[i%IMG.length]}?auto=format&fit=crop&w=${w}&q=88`;
+}
+
+const colors=["Qora","Oq","Bej","Yong‘oq","Kulrang","Oltin"];
+const sizes=["Small","Medium","Large"];
+
+const base=[
+ ["Aura Sofa","Divan","Luxury",8.9],
+ ["Neo Curve Sofa","Divan","Modern",9.4],
+ ["Titan High-Tech Sofa","Divan","High-Tech",12.8],
+ ["Marble Lounge Sofa","Divan","Stone",14.5],
+ ["Cloud Minimal Sofa","Divan","Minimal",7.8],
+ ["Royal Velvet Sofa","Divan","Luxury",16.9],
+ ["Classic Oak Sofa","Divan","Classic",8.2],
+ ["Glassline Sofa","Divan","Glass",11.5],
+
+ ["Orbit Lounge Chair","Kreslo","Modern",3.2],
+ ["Mono High-Tech Chair","Kreslo","High-Tech",4.5],
+ ["Stone Accent Chair","Kreslo","Stone",5.2],
+ ["Velvet Royal Chair","Kreslo","Luxury",6.8],
+ ["Clear Glass Chair","Kreslo","Glass",4.9],
+ ["Oak Classic Chair","Kreslo","Classic",3.5],
+
+ ["Marble Dining Table","Stol","Stone",10.9],
+ ["Crystal Glass Table","Stol","Glass",8.7],
+ ["Tech Black Table","Stol","High-Tech",7.9],
+ ["Minimal Oak Table","Stol","Minimal",6.5],
+ ["Royal Dining Table","Stol","Luxury",13.4],
+ ["Modern Extend Table","Stol","Modern",9.2],
+
+ ["Linea Wardrobe","Shkaf","Minimal",7.6],
+ ["Black Glass Wardrobe","Shkaf","Glass",11.8],
+ ["Marble Frame Wardrobe","Shkaf","Stone",12.9],
+ ["Tech Mirror Wardrobe","Shkaf","High-Tech",14.2],
+ ["Royal Wood Wardrobe","Shkaf","Luxury",15.5],
+ ["Classic Oak Wardrobe","Shkaf","Classic",9.8],
+
+ ["Cloud Bed","Krovat","Minimal",8.9],
+ ["Royal King Bed","Krovat","Luxury",17.9],
+ ["Tech Frame Bed","Krovat","High-Tech",13.5],
+ ["Stone Headboard Bed","Krovat","Stone",15.4],
+ ["Glassline Bed","Krovat","Glass",12.7],
+ ["Oak Classic Bed","Krovat","Classic",10.2],
+
+ ["Cinema TV Wall","TV Zona","High-Tech",12.5],
+ ["Marble TV Lounge","TV Zona","Stone",13.9],
+ ["Glass TV Gallery","TV Zona","Glass",10.8],
+ ["Minimal TV Frame","TV Zona","Minimal",7.9],
+
+ ["Aura Round Mirror","Oyna","Modern",2.9],
+ ["Gold Luxury Mirror","Oyna","Luxury",4.8],
+ ["Black Tech Mirror","Oyna","High-Tech",3.9],
+ ["Marble Edge Mirror","Oyna","Stone",4.4],
+
+ ["Linea Komod","Komod","Minimal",3.1],
+ ["Royal Nightstand","Komod","Luxury",5.2],
+ ["Tech Side Cabinet","Komod","High-Tech",4.5],
+ ["Oak Classic Komod","Komod","Classic",3.6],
+
+ ["Aura Dining Chair","Stul","Modern",2.4],
+ ["Glass Dining Chair","Stul","Glass",3.1],
+ ["Stone Dining Chair","Stul","Stone",3.6],
+ ["Classic Oak Dining Chair","Stul","Classic",2.7]
+];
+
+const products=base.map((p,i)=>({
+ id:i+1,
+ name:p[0],
+ category:p[1],
+ style:p[2],
+ price:Math.round(p[3]*1000000),
+ discount:i%7===0?12:(i%11===0?8:0),
+ rating:(4.5+(i%5)*.1).toFixed(1),
+ image:img(i),
+ images:[img(i),img(i+3),img(i+6)],
+ colors:colors.slice(0,3+(i%4)),
+ sizes:sizes,
+ material:
+   p[2]==="Stone"?"Natural marble":
+   p[2]==="Glass"?"Tempered glass":
+   p[2]==="High-Tech"?"Metal + glass":
+   p[2]==="Classic"?"Natural oak":
+   p[2]==="Luxury"?"Velvet + wood":
+   p[2]==="Minimal"?"MDF + oak":
+   "Premium fabric"
+}));
+
+const styles=[
+ ["High-Tech","Metal, LED, black glass",img(2)],
+ ["Stone","Marble & natural stone",img(3)],
+ ["Glass","Transparent premium glass",img(7)],
+ ["Minimal","Clean modern forms",img(4)],
+ ["Luxury","Premium textures",img(5)],
+ ["Classic","Natural wood",img(6)],
+ ["Modern","Contemporary design",img(8)]
+];
+
+/* =========================
+   STORAGE
+========================= */
+
+const KEY={
+ cart:"vellora_cart",
+ orders:"vellora_orders",
+ users:"vellora_users",
+ user:"vellora_user",
+ fav:"vellora_fav"
+};
+
+let cart=JSON.parse(localStorage.getItem(KEY.cart)||"[]");
+let orders=JSON.parse(localStorage.getItem(KEY.orders)||"[]");
+let users=JSON.parse(localStorage.getItem(KEY.users)||"[]");
+let currentUser=JSON.parse(localStorage.getItem(KEY.user)||"null");
+let favorites=JSON.parse(localStorage.getItem(KEY.fav)||"[]");
+
+let selectedProduct=null;
+let selectedColor="";
+let selectedSize="";
+let selectedQty=1;
+let gps={lat:null,lng:null,address:""};
+
+/* =========================
+   BASIC
+========================= */
+
+function save(){
+ localStorage.setItem(KEY.cart,JSON.stringify(cart));
+ localStorage.setItem(KEY.orders,JSON.stringify(orders));
+ localStorage.setItem(KEY.users,JSON.stringify(users));
+ localStorage.setItem(KEY.user,JSON.stringify(currentUser));
+ localStorage.setItem(KEY.fav,JSON.stringify(favorites));
+ updateCartCount();
+}
+
+function money(n){
+ return new Intl.NumberFormat("uz-UZ").format(Math.round(n))+" so‘m";
+}
+
+function escapeHTML(s){
+ return String(s).replace(/[&<>"']/g,m=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+ }[m]));
+}
+
+function toast(t){
+ const el=document.getElementById("toast");
+ el.textContent=t;
+ el.classList.add("show");
+ setTimeout(()=>el.classList.remove("show"),2600);
+}
+
+function closeModal(id){
+ document.getElementById(id).classList.remove("show");
+}
+
+function scrollToId(id){
+ document.getElementById(id)?.scrollIntoView({behavior:"smooth"});
+}
+
+function openModal(id){
+ document.getElementById(id).classList.add("show");
+}
+
+/* =========================
+   STYLES
+========================= */
+
+function renderStyles(){
+ document.getElementById("styleGrid").innerHTML=styles.map(s=>`
+  <button class="style" style="background-image:url('${s[2]}')" onclick="filterStyle('${s[0]}')">
+   <strong>${s[0]}</strong><small>${s[1]}</small>
+  </button>
+ `).join("");
+}
+
+function filterStyle(style){
+ document.getElementById("styleFilter").value=style;
+ renderProducts();
+ scrollToId("products");
+}
+
+/* =========================
+   PRODUCTS
+========================= */
+
+function renderProducts(){
+ const q=document.getElementById("search").value.toLowerCase();
+ const cat=document.getElementById("catFilter").value;
+ const sty=document.getElementById("styleFilter").value;
+ const max=document.getElementById("priceFilter").value;
+
+ let list=products.filter(p=>{
+  const text=(p.name+" "+p.category+" "+p.style+" "+p.material).toLowerCase();
+  return (!q||text.includes(q))
+   &&(!cat||p.category===cat)
+   &&(!sty||p.style===sty)
+   &&(!max||p.price<=Number(max)*1000000);
+ });
+
+ document.getElementById("productsGrid").innerHTML=list.length
+ ? list.map(productCard).join("")
+ : `<div class="empty" style="grid-column:1/-1">Mebel topilmadi 😕</div>`;
+}
+
+function productCard(p){
+ const fav=favorites.includes(p.id);
+ const final=p.price*(1-p.discount/100);
+ return `
+ <article class="product">
+  <div class="productImg">
+   <img src="${p.image}" alt="${escapeHTML(p.name)}">
+   ${p.discount?`<div class="discount">-${p.discount}%</div>`:""}
+   <button class="heart ${fav?"active":""}" onclick="toggleFav(${p.id});event.stopPropagation()">♥</button>
+  </div>
+  <div class="productBody">
+   <small>${p.style} · ${p.category}</small>
+   <h3>${escapeHTML(p.name)}</h3>
+   <div class="rating">★★★★★ <span style="color:#888">${p.rating}</span></div>
+   <div class="price">
+    ${money(final)}
+    ${p.discount?`<span class="old">${money(p.price)}</span>`:""}
+   </div>
+   <div class="productFoot">
+    <button class="btn" onclick="openProduct(${p.id})">Ko‘rish</button>
+    <button class="btn primary" onclick="quickAdd(${p.id})">+ Savat</button>
+   </div>
+  </div>
+ </article>`;
+}
+
+function openProduct(id){
+ selectedProduct=products.find(p=>p.id===id);
+ selectedColor=selectedProduct.colors[0];
+ selectedSize=selectedProduct.sizes[1];
+ selectedQty=1;
+
+ renderProductDetail();
+ openModal("productModal");
+}
+
+function renderProductDetail(imageIndex=0){
+ const p=selectedProduct;
+ const final=p.price*(1-p.discount/100);
+
+ document.getElementById("productDetail").innerHTML=`
+ <div class="detail">
+  <div class="detailImg">
+   <img id="detailImage" src="${p.images[imageIndex]}" alt="${escapeHTML(p.name)}">
+  </div>
+
+  <div>
+   <small style="color:var(--gold)">${p.style} · ${p.category}</small>
+   <h2>${escapeHTML(p.name)}</h2>
+   <div class="rating">★★★★★ ${p.rating}</div>
+   <p>${p.material}. VELLORA premium kolleksiyasidan zamonaviy va sifatli model.</p>
+
+   <div class="price" style="margin-top:20px">
+    ${money(final)}
+    ${p.discount?`<span class="old">${money(p.price)}</span>`:""}
+   </div>
+
+   <div class="option">
+    <label>Rang</label>
+    <div class="options">
+     ${p.colors.map(c=>`
+      <button class="${c===selectedColor?"active":""}" onclick="selectColor('${c}')">${c}</button>
+     `).join("")}
+    </div>
+   </div>
+
+   <div class="option">
+    <label>O‘lcham</label>
+    <div class="options">
+     ${p.sizes.map(s=>`
+      <button class="${s===selectedSize?"active":""}" onclick="selectSize('${s}')">${s}</button>
+     `).join("")}
+    </div>
+   </div>
+
+   <div class="option">
+    <label>Miqdor</label>
+    <div class="qty">
+     <button onclick="changeQty(-1)">−</button>
+     <span id="detailQty">${selectedQty}</span>
+     <button onclick="changeQty(1)">+</button>
+    </div>
+   </div>
+
+   <button class="btn primary" style="width:100%;margin-top:25px" onclick="addSelectedToCart()">
+    🛒 Savatga qo‘shish
+   </button>
+
+   <div class="options" style="margin-top:12px">
+    ${p.images.map((im,i)=>`
+     <button onclick="renderProductDetail(${i})">
+      Rasm ${i+1}
+     </button>
+    `).join("")}
+   </div>
+  </div>
+ </div>`;
+}
+
+function selectColor(c){
+ selectedColor=c;
+ renderProductDetail();
+}
+
+function selectSize(s){
+ selectedSize=s;
+ renderProductDetail();
+}
+
+function changeQty(n){
+ selectedQty=Math.max(1,Math.min(20,selectedQty+n));
+ const el=document.getElementById("detailQty");
+ if(el)el.textContent=selectedQty;
+}
+
+function quickAdd(id){
+ const p=products.find(x=>x.id===id);
+ addToCart(p.id,p.colors[0],p.sizes[1],1);
+ toast("Savatga qo‘shildi ✓");
+}
+
+function addSelectedToCart(){
+ addToCart(selectedProduct.id,selectedColor,selectedSize,selectedQty);
+ closeModal("productModal");
+ toast("Mahsulot savatga qo‘shildi ✓");
+}
+
+function addToCart(id,color,size,qty){
+ const item=cart.find(x=>x.id===id&&x.color===color&&x.size===size);
+ if(item)item.qty+=qty;
+ else cart.push({id,color,size,qty});
+ save();
+}
+
+function toggleFav(id){
+ if(favorites.includes(id))
+  favorites=favorites.filter(x=>x!==id);
+ else
+  favorites.push(id);
+ save();
+ renderProducts();
+}
+
+/* =========================
+   CART
+========================= */
+
+function updateCartCount(){
+ document.getElementById("cartCount").textContent=
+  cart.reduce((a,x)=>a+x.qty,0);
+}
+
+function cartTotal(){
+ return cart.reduce((sum,x)=>{
+  const p=products.find(p=>p.id===x.id);
+  return sum+p.price*(1-p.discount/100)*x.qty;
+ },0);
+}
+
+function openCart(){
+ renderCart();
+ openModal("cartModal");
+}
+
+function renderCart(){
+ const box=document.getElementById("cartList");
+
+ if(!cart.length){
+  box.innerHTML=`<div class="empty">Savat bo‘sh.</div>`;
+  document.getElementById("cartTotal").textContent=money(0);
+  return;
+ }
+
+ box.innerHTML=cart.map((x,i)=>{
+  const p=products.find(p=>p.id===x.id);
+  const price=p.price*(1-p.discount/100);
+  return `
+   <div class="cartItem">
+    <img src="${p.image}">
+    <div>
+     <b>${escapeHTML(p.name)}</b>
+     <small style="display:block">${x.color} · ${x.size} · ${x.qty} dona</small>
+     <strong>${money(price*x.qty)}</strong>
+    </div>
+    <button class="btn" onclick="removeCart(${i})">×</button>
+   </div>`;
+ }).join("");
+
+ document.getElementById("cartTotal").textContent=money(cartTotal());
+}
+
+function removeCart(i){
+ cart.splice(i,1);save();renderCart();
+}
+
+/* =========================
+   CHECKOUT & GPS
+========================= */
+
+function openCheckout(){
+ if(!cart.length){ toast("Savat bo‘sh!"); return; }
+ closeModal("cartModal");
+ openModal("checkoutModal");
+ if(currentUser){
+  document.getElementById("checkoutName").value=currentUser.name||"";
+  document.getElementById("checkoutPhone").value=currentUser.phone||"";
+ }
+}
+
+function getGPS(){
+ const box=document.getElementById("locationInfo");
+ box.textContent="Joylashuv aniqlanmoqda...";
+ if("geolocation" in navigator){
+  navigator.geolocation.getCurrentPosition(
+   pos=>{
+    gps.lat=pos.coords.latitude;
+    gps.lng=pos.coords.longitude;
+    gps.address=`Lat: ${gps.lat.toFixed(4)}, Lng: ${gps.lng.toFixed(4)}`;
+    box.textContent=`📍 Joylashuv aniqlandi: ${gps.address}`;
+    toast("GPS aniqlandi ✓");
+   },
+   err=>{
+    box.textContent="Joylashuvni aniqlab bo'lmadi.";
+    toast("GPS xatoligi!");
+   }
+  );
+ } else {
+  box.textContent="Geolokatsiya brauzeringizda qo'llab-quvvatlanmaydi.";
+ }
+}
+
+function placeOrder(){
+ const name=document.getElementById("checkoutName").value.trim();
+ const phone=document.getElementById("checkoutPhone").value.trim();
+ const address=document.getElementById("checkoutAddress").value.trim();
+ const payment=document.getElementById("payment").value;
+ const delivery=document.getElementById("delivery").value;
+
+ if(!name || !phone || !address){
+  toast("Iltimos, barcha maydonlarni to'ldiring!");
+  return;
+ }
+
+ const newOrder={
+  id:"ORD-"+Math.floor(100000+Math.random()*900000),
+  date:new Date().toLocaleString("uz-UZ"),
+  name,phone,address,gps,payment,delivery,
+  items:[...cart],
+  total:cartTotal(),
+  status:"Qabul qilindi"
+ };
+
+ orders.unshift(newOrder);
+ cart=[];
+ save();
+ closeModal("checkoutModal");
+ toast("Buyurtma muvaffaqiyatli berildi! 🎉");
+ openAccount();
+}
+
+/* =========================
+   AI ASSISTANT
+========================= */
+
+function openAI(){ openModal("aiModal"); }
+
+function aiSend(){
+ const input=document.getElementById("aiInput");
+ const val=input.value.trim();
+ if(!val) return;
+
+ const chat=document.getElementById("aiMessages");
+ chat.innerHTML+=`<div class="msg user">${escapeHTML(val)}</div>`;
+ input.value="";
+ chat.scrollTop=chat.scrollHeight;
+
+ setTimeout(()=>{
+  let reply="Rahmat! VELLORA mutaxassislari tez orada siz bilan bog'lanishadi yoki tanlangan parametrlar bo'yicha eng ma'qul mebellarni tavsiya etishadi.";
+  const q=val.toLowerCase();
+  if(q.includes("divan")) reply="Bizda Aura Sofa, Neo Curve va High-Tech modellarimiz mavjud. Katalogni ko'rib chiqishingizni tavsiya qilamiz!";
+  else if(q.includes("narx") || q.includes("budjet")) reply="Bizda 2 mln so'mdan 20 mln so'mgacha bo'lgan turli uslubdagi mebellar mavjud.";
+  else if(q.includes("dostavka") || q.includes("yetkazib")) reply="Toshkent bo'ylab yetkazib berish 1-2 kun, viloyatlarga 2-5 kun ichida amalga oshiriladi.";
+
+  chat.innerHTML+=`<div class="msg ai">${reply}</div>`;
+  chat.scrollTop=chat.scrollHeight;
+ },700);
+}
+
+function miniSend(){
+ const input=document.getElementById("miniInput");
+ const val=input.value.trim();
+ if(!val) return;
+
+ const chat=document.getElementById("miniChat");
+ chat.innerHTML+=`<div class="msg user">${escapeHTML(val)}</div>`;
+ input.value="";
+ chat.scrollTop=chat.scrollHeight;
+
+ setTimeout(()=>{
+  chat.innerHTML+=`<div class="msg ai">Yaxshi savol! Qo'shimcha ma'lumot olish uchun to'liq AI menyusini ochishingiz mumkin.</div>`;
+  chat.scrollTop=chat.scrollHeight;
+ },700);
+}
+
+/* =========================
+   ACCOUNT & FAVORITES
+========================= */
+
+function openFavorites(){
+ const box=document.getElementById("favGrid");
+ const list=products.filter(p=>favorites.includes(p.id));
+
+ if(!list.length){
+  box.innerHTML=`<div class="empty" style="grid-column:1/-1">Sevimlilar ro'yxati bo'sh.</div>`;
+ } else {
+  box.innerHTML=list.map(productCard).join("");
+ }
+ openModal("favModal");
+}
+
+function renderAccount(){
+ const box=document.getElementById("accountContent");
+ let ordersHTML = orders.length ? orders.map(o=>`
+  <div style="background:#17191e;border:1px solid var(--line);padding:15px;border-radius:12px;margin-top:10px">
+   <b>${o.id}</b> — <span style="color:var(--gold)">${o.status}</span>
+   <div style="color:#aaa;font-size:13px;margin-top:5px">Sana: ${o.date} | Summa: ${money(o.total)}</div>
+  </div>
+ `).join("") : '<div style="color:#888;margin-top:10px">Hozircha buyurtmalar yo‘q.</div>';
+
+ box.innerHTML=`
+  <h2>👤 Shaxsiy kabinet</h2>
+  <div style="margin-top:20px">
+   <h3>Buyurtmalar tarixi</h3>
+   ${ordersHTML}
+  </div>
+ `;
+}
+
+/* =========================
+   INIT
+========================= */
+
+window.addEventListener("DOMContentLoaded",()=>{
+ renderStyles();
+ renderProducts();
+ updateCartCount();
+});
+</script>
+
+</body>
+</html>
